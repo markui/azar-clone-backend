@@ -1,0 +1,48 @@
+# Base Image
+FROM        ubuntu:16.04
+MAINTAINER  viking617617@gmail.com
+
+# APT package 설치
+RUN         apt-get update && apt-get install -y \
+            # pip, git, vim
+            python-pip \
+            git \
+            vim \
+            # pyenv build problem solve
+            make build-essential \
+            libssl-dev zlib1g-dev libbz2-dev \
+            libreadline-dev libsqlite3-dev wget \
+            curl llvm libncurses5-dev libncursesw5-dev \
+            xz-utils tk-dev \
+            # zsh
+            zsh \
+            # nginx
+            nginx \
+            # supervisor
+            supervisor
+
+# pyenv 설치
+RUN         curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+ENV         PATH=/root/.pyenv/bin:$PATH
+RUN         pyenv install 3.6.2
+
+# zsh(oh-my-zsh theme) 설치
+RUN         wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN         chsh -s /usr/bin/zsh
+
+# pyenv settings
+RUN         echo 'export PATH="/root/.pyenv/bin:$PATH"' >> ~/.zshrc
+RUN         echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+RUN         echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
+
+# pyenv virtualenv
+RUN         pyenv virtualenv 3.6.2 app
+
+# uWGSI install
+RUN         /root/.pyenv/versions/app/bin/pip install uwsgi
+
+# requirements 설치
+ENV         LANG C.UTF-8
+COPY        requirements.txt /srv/requirements.txt
+RUN         /root/.pyenv/versions/app/bin/pip install -r \
+            /srv/requirements.txt
