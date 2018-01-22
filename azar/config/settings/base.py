@@ -58,7 +58,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Allowed Hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '.elasticbeanstalk.com'
+]
 
 # WSGI
 WSGI_APPLICATION = 'config.wsgi.application'
