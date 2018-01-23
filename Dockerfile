@@ -4,7 +4,7 @@ MAINTAINER  viking617617@gmail.com
 
 # Django Settings
 ENV         LANG C.UTF-8
-ENV         DJANGO_SETTINGS_MODULE config.settings.local
+ENV         DJANGO_SETTINGS_MODULE config.settings.production
 
 # 파일 복사 및 requirements 설치
 COPY        . /srv/app
@@ -29,9 +29,9 @@ RUN         ln -sf /etc/nginx/sites-available/app.conf \
 RUN         mkdir -p /var/log/uwsgi/app
 
 # manage.py - collect staticfiles, DB migration
-#WORKDIR     /srv/app/azar
+WORKDIR     /srv/app/azar
+RUN         /root/.pyenv/versions/app/bin/python manage.py migrate --noinput
 #RUN         /root/.pyenv/versions/app/bin/python manage.py collectstatic --noinput
-#RUN         /root/.pyenv/versions/app/bin/python manage.py migrate --noinput
 
 # supervisor
 RUN         cp .config/supervisor/* \
