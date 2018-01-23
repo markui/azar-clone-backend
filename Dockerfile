@@ -25,17 +25,19 @@ RUN         rm -rf /etc/nginx/sites-enabled/*
 RUN         ln -sf /etc/nginx/sites-available/app.conf \
                     /etc/nginx/sites-enabled/app.conf
 
-# log directory
-RUN         mkdir -p /var/log/uwsgi/app
-
-# manage.py - collect staticfiles, DB migration
-WORKDIR     /srv/app/azar
-RUN         /root/.pyenv/versions/app/bin/python manage.py migrate --noinput
-#RUN         /root/.pyenv/versions/app/bin/python manage.py collectstatic --noinput
-
 # supervisor
 RUN         cp .config/supervisor/* \
                 /etc/supervisor/conf.d/
 CMD         supervisord -n
+
+# log directory
+RUN         mkdir -p /var/log/uwsgi/app
+
+# manage.py - DB migration, Collect Staticfiles,
+WORKDIR     /srv/app/azar
+RUN         /root/.pyenv/versions/app/bin/python manage.py migrate --noinput
+RUN         /root/.pyenv/versions/app/bin/python manage.py collectstatic --noinput
+
+
 
 EXPOSE      80 8013

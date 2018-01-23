@@ -32,7 +32,7 @@ SECRET_KEY = config_secret_common['django']['secret_key']
 # Static Files
 STATIC_URL = '/static/'
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATIC_FILES_DIRS = [
+STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
