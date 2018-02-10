@@ -10,5 +10,11 @@ INSTALLED_APPS += [
     'django_extensions'
 ]
 
+# Allowed Hosts
+ALLOWED_HOSTS = [
+    'localhost',
+    '.elasticbeanstalk.com'
+]
+
 # Debug
 DEBUG = True

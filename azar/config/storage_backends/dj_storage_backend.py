@@ -17,7 +17,6 @@ class S3PublicMediaStorage(S3Boto3Storage):
     file_overwrite = False
 
 
-
 # S3 Private Mediafiles
 class S3PrivateMediaStorage(S3Boto3Storage):
     location = settings.AWS_PRIVATE_MEDIA_LOCATION

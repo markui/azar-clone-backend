@@ -10,6 +10,12 @@ INSTALLED_APPS += [
     'storages'
 ]
 
+# Allowed Hosts
+ALLOWED_HOSTS = [
+    'localhost',
+    '.elasticbeanstalk.com'
+]
+
 # AWS S3
 # 1. IAM User Secret Info
 AWS_ACCESS_KEY_ID = config_secret_prod['aws']['AWS_ACCESS_KEY_ID']

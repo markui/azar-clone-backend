@@ -14,8 +14,6 @@ RUN         /root/.pyenv/versions/app/bin/pip install -r /srv/app/requirements.t
 WORKDIR     /srv/app
 RUN         pyenv local app
 
-RUN         cp .config/nginx/nginx.conf \
-                /etc/nginx/nginx.conf
 # Nginx
 RUN         cp .config/nginx/nginx.conf \
                 /etc/nginx/nginx.conf

@@ -9,7 +9,7 @@ django_settings = os.environ['DJANGO_SETTINGS_MODULE']
 def PrivateMediaStorage():
     """
     local, production 환경에 따라
-    서로 다른 PrivateMediaStorage를 사용하기 위한 함수
+    서로 다른 PrivateMediaStorage를 사용하기 위해서 함수화
 
     :return: Storage Class for Media Files
     """
