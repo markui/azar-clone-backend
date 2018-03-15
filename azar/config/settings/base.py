@@ -42,6 +42,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
 
 # Auth
+AUTH_USER_MODEL = 'users.User'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -75,7 +76,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-
+    'users'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -83,6 +84,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # LocalMiddleware - to determine the user's language preference
+    # https://docs.djangoproject.com/en/dev/topics/i18n/translation/#how-django-discovers-language-preference
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -110,9 +114,14 @@ TEMPLATES = [
     },
 ]
 
+# GeoIp2 Country/City Datasets(Binary Format) &
+# ISO-Alpha-2 Format Country Code : Country Name Mapping File
+GEOIP_PATH = os.path.join(BASE_DIR, 'utils', 'geoip2')
+ISO_2_COUNTRIES_MAPPING_FILE = os.path.join(GEOIP_PATH, 'ISO_2_Countries.json')
+
 # Internationalization
 LANGUAGE_CODE = 'ko-kr'
-TIME_ZONE = 'Asia/Seoul'
+# TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True

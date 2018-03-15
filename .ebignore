@@ -4,6 +4,7 @@
 
 # .ebignore
 !.config_secret/
+!azar/utils/geoip2/
 
 # Created by https://www.gitignore.io/api/linux,macos,django,python,pycharm
 
