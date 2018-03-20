@@ -76,7 +76,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'users'
+    'apps.users'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -116,7 +116,7 @@ TEMPLATES = [
 
 # GeoIp2 Country/City Datasets(Binary Format) &
 # ISO-Alpha-2 Format Country Code : Country Name Mapping File
-GEOIP_PATH = os.path.join(BASE_DIR, 'utils', 'geoip2')
+GEOIP_PATH = os.path.join(BASE_DIR, 'core', 'utils', 'geoip2')
 ISO_2_COUNTRIES_MAPPING_FILE = os.path.join(GEOIP_PATH, 'ISO_2_Countries.json')
 
 # Internationalization
