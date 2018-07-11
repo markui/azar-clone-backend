@@ -41,4 +41,4 @@ DEFAULT_FILE_STORAGE = 'config.storage_backends.dj_storage_backend.S3PublicMedia
 PRIVATE_FILE_STORAGE = 'config.storage_backends.dj_storage_backend.S3PrivateMediaStorage'
 
 # Debug
-DEBUG = True
+DEBUG = False

@@ -5,6 +5,7 @@ from core.models import TimeStampedModel, CreatedTimeStampedModel
 
 __all__ = (
     'FriendInvitation',
+    'ManagedFriendship',
     'ThumbsUp',
     'Report',
 )
